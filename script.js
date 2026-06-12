@@ -23,8 +23,8 @@ let frames = ["first", "second", "third", "fourth"];
 // Move Road Lines
 function moveRoadLines() {
     
-    moveline1 += 5;
-    moveline2 += 5;
+    moveline1 += 10;
+    moveline2 += 10;
 
     line1.forEach(line => {
         line.style.setProperty('--line1', `${moveline1}px`);
@@ -37,14 +37,14 @@ function moveRoadLines() {
 
     reverseLinesOnLimit();
     // requestAnimationFrame(moveRoadLines);
-    // moveMainCharacterInGame();
+    moveMainCharacterFrames();
 }
 
 function reverseLinesOnLimit() {
     // Reverse lines at hitting the limit
 
     if (moveline2 >= 350) {
-        moveline2 = -500;
+        moveline2 = -700;
         
         // Hide Line 2 at reverse
         line2.forEach(line => {
@@ -56,11 +56,11 @@ function reverseLinesOnLimit() {
             line2.forEach(line => {
                 line.classList.remove('hid-line');
             });
-        }, 100);
+        }, 110);
     }
 
-    if (moveline1 >= 700) {
-        moveline1 = -1600;
+    if (moveline1 >= 600) {
+        moveline1 = -700;
 
         // Hide Line 1 at reverse
         line1.forEach(line => {
@@ -72,44 +72,48 @@ function reverseLinesOnLimit() {
             line1.forEach(line => {
                 line.classList.remove('hid-line');
             });
-        }, 90);
+        }, 110);
     }
 }
 
 
 
-function moveMainCharacterInGame() {
+function moveMainCharacterFrames() {
 
     mainCharacterImg.src = `./Assets/Runner/${frames[RunningTurns]}.png`;
 
     RunningTurns = (RunningTurns + 1) % frames.length;
     // console.log("Frames = ", RunningTurns);
+}
 
-    // if (RunningTurns === 0) {
-    //     mainCharacterImg.src = "./Assets/Runner/first.png";
-    //     RunningTurns += 1;
-    // }
+// 
+document.addEventListener('keydown', (e) => {
 
-    // if (RunningTurns === 1) {
-    //     mainCharacterImg.src = "./Assets/Runner/second.png";
-    //     RunningTurns++;
-    // }
+    if (e.key === "ArrowRight") {
 
-    // if (RunningTurns === 2) {
-    //     mainCharacterImg.src = "./Assets/Runner/third.png";
-    //     RunningTurns++;
-    // }
+        if (x > 520) {
+            return x = 520;
+        }
+        x += 10;
+        mainCharacterImg.style.setProperty('--x', `${x}px`);
+    }
+    if (e.key === "ArrowLeft") {
 
-    // if (RunningTurns === 3) {
-    //     mainCharacterImg.src = "./Assets/Runner/fourth.png";
-    //     RunningTurns = 0;
-    // }
+        if (x < -290) {
+            return x = -290;
+        }
+        x -= 10;
+        mainCharacterImg.style.setProperty('--x', `${x}px`);
+    }
+    
+});
+
+
+function moveMainCharacterInGame() {
+
 }
 
 // moveRoadLines();
  
-// setInterval(moveMainCharacterInGame, 400);
-setInterval(moveRoadLines, 200);
-
-
-// requestAnimationFrame(moveRoadLines);
+// setInterval(moveMainCharacterFrames, 400);
+// setInterval(moveRoadLines, 100);

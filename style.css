@@ -46,7 +46,7 @@
     width: 20px;
     background-color: white;
     border-radius: 5px;
-    margin: 120px auto;
+    margin: 200px auto;
 }
 
 /* Move lines */
@@ -74,8 +74,9 @@
     position: absolute;
     left: 300px;
     bottom: 10px;
+    transform: translateX(var(--x));
+    transition: transform 0.2s linear;
 }
-
 
 
 /* Side bar CSS */
