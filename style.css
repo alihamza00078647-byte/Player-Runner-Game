@@ -14,6 +14,9 @@
     /* Line Movements */
     --line1 : 0px;
     --line2 : 0px;
+
+    /* Obstacle Positions */
+    --hurdle1 : 0px;
 }
 
 .game-container{
@@ -32,6 +35,7 @@
     background-color: rgb(173, 70, 70);
     display: flex;
     overflow: hidden;
+    perspective: 1200px;
 }
 
 .road{
@@ -65,8 +69,8 @@
     display: none;
 }
 
-/* Charater Design and functions */
 
+/* Charater Design and functions */
 .character{
     height: 165px;
     width: 60px;
@@ -74,7 +78,9 @@
     position: absolute;
     left: 300px;
     bottom: 10px;
-    transform: translateX(var(--x));
+    transform-style: preserve-3d;
+    transform-origin: center;
+    transform: translate3d(var(--x), var(--y), var(--z));
     transition: transform 0.2s linear;
 }
 
@@ -84,4 +90,45 @@
     height: 100%;
     width: 30%;
     background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gamesound{
+    height: 20px;
+    width: 40%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.game-icon{
+    height: 60%;
+    width: 90%;
+    object-fit: cover;
+}
+
+.count-hurdle{
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box{
+    height: 20px;
+    width: 70%;
+    border: 2px solid yellow;
+    border-radius: 3px;
+    color: white;
+    display: flex;
+}
+
+
+#gameVolume{
+    height: 4px;
+    width: 100px;
 }

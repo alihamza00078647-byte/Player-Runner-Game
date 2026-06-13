@@ -2,8 +2,11 @@
 const line1 = document.querySelectorAll('.line1'); 
 const line2 = document.querySelectorAll('.line2'); 
 const line3 = document.querySelectorAll('.line3');
+
 // Select main Character
 const mainCharacterImg = document.querySelector('.character');
+// Selection Other Elements.
+const setVolume = document.querySelector('#gameVolume');
 
 
  
@@ -86,17 +89,22 @@ function moveMainCharacterFrames() {
     // console.log("Frames = ", RunningTurns);
 }
 
-// 
-document.addEventListener('keydown', (e) => {
 
+// Control The Movements of Players Through x-axis.
+document.addEventListener('keydown', moveMainCharacterInGame);
+function moveMainCharacterInGame(e) {
+    
+    // To Move Left Side. 
     if (e.key === "ArrowRight") {
-
+        
         if (x > 520) {
             return x = 520;
         }
         x += 10;
         mainCharacterImg.style.setProperty('--x', `${x}px`);
     }
+
+    // To Move Right Side. 
     if (e.key === "ArrowLeft") {
 
         if (x < -290) {
@@ -105,13 +113,51 @@ document.addEventListener('keydown', (e) => {
         x -= 10;
         mainCharacterImg.style.setProperty('--x', `${x}px`);
     }
+
+    if (e.key === "ArrowUp") {
+
+        if (y === -400) {
+            return y = -400;
+        }
+
+        y -= 10;
+        mainCharacterImg.style.setProperty('--y', `${y}px`);
+    }
     
-});
-
-
-function moveMainCharacterInGame() {
+    if (e.key === "ArrowDown") {
+        if (y === 10) {
+            return y = 10;
+        }
+        y += 10;
+        mainCharacterImg.style.setProperty('--y', `${y}px`);
+    }
 
 }
+
+
+// 
+document.addEventListener('keyup', JumpOnHurdles);
+
+function JumpOnHurdles(e) {
+    if (e.code === "Space") {
+        y -= 100;
+        z += 50;
+
+        mainCharacterImg.style.setProperty('--y', `${y}px`);
+        mainCharacterImg.style.setProperty('--z', `${z}px`);
+    }
+}
+
+
+function checkYAndZaxisLimit() {
+
+}
+ 
+
+
+// const setSidePanelOperation = () => {
+//     gameVolume
+// }
 
 // moveRoadLines();
  

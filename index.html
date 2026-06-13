@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Runner Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="game-container">
@@ -25,11 +26,31 @@
                 <div class="line line1"></div>
                 <div class="line line2"></div>
             </div>
+            
             <img class="character" src="./Assets/Runner/first.png" >
         </div>
 
         <div class="sidebar">
 
+            <h1 class="title">Runner Game</h1>
+            <h4 class="game-timer">00:00:00</h4>
+            <div class="gamesound">
+                <i class=" fa-solid fa-volume-high"></i>
+                <input type="range" id="gameVolume">
+            </div>
+
+            <img class="game-icon" src="./Assets/icon.png" alt="">
+
+            <div class="count-hurdle">
+                <h2>Hurdles : </h2>
+                <div class="box hurdle">1</div>
+            </div>
+            
+            <div class="count-hurdle level-count">
+                <h2>Levels: </h2>
+                <div class="box level">1</div>
+                
+            </div>
         </div>
     </div>
 
