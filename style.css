@@ -89,12 +89,23 @@
 .sidebar{
     height: 100%;
     width: 30%;
-    background-color: aqua;
+    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    overflow: hidden;
 }
+
+/* Title of Game */
+.title{
+    color: white;
+}
+.game-timer{
+    color: white;
+}
+
+
 
 .gamesound{
     height: 20px;
@@ -113,7 +124,8 @@
 }
 
 .count-hurdle{
-    border: 2px solid black;
+    width: 350px;
+    /* border: 2px solid black; */
     display: flex;
     justify-content: space-between;
     align-items: center;

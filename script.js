@@ -153,6 +153,11 @@ function checkYAndZaxisLimit() {
 
 }
  
+setVolume.addEventListener('input', (e) => {
+    setVolume.volume = e.target.value;
+    console.log(setVolume.volume);
+    // if ()
+})
 
 
 // const setSidePanelOperation = () => {
