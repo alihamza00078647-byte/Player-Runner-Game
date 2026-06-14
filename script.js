@@ -7,7 +7,7 @@ const line3 = document.querySelectorAll('.line3');
 const mainCharacterImg = document.querySelector('.character');
 // Selection Other Elements.
 const setVolume = document.querySelector('#gameVolume');
-
+const audioElement = new Audio('Assets\Background_Sound.mp3');
 
  
 // Move Road Lines variables initial values
@@ -93,7 +93,6 @@ function moveMainCharacterFrames() {
 // Control The Movements of Players Through x-axis.
 document.addEventListener('keydown', moveMainCharacterInGame);
 function moveMainCharacterInGame(e) {
-    
     // To Move Left Side. 
     if (e.key === "ArrowRight") {
         
@@ -142,7 +141,7 @@ function JumpOnHurdles(e) {
     if (e.code === "Space") {
         y -= 100;
         z += 50;
-
+        audioElement.play();
         mainCharacterImg.style.setProperty('--y', `${y}px`);
         mainCharacterImg.style.setProperty('--z', `${z}px`);
     }
