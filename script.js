@@ -5,9 +5,12 @@ const line3 = document.querySelectorAll('.line3');
 
 // Select main Character
 const mainCharacterImg = document.querySelector('.character');
+const timerBox = document.querySelector(".game-timer")
+
 // Selection Other Elements.
 const setVolume = document.querySelector('#gameVolume');
 const audioElement = new Audio("./Assets/Background_Sound.mp3");
+
 
  
 // Move Road Lines variables initial values
@@ -17,10 +20,11 @@ let moveline2 = 0;
 
 // Move Main Character.
 let x = 0, y = 0, z = 0;
-let RunningTurns = 0;
 let frames = ["first", "second", "third", "fourth"];
 
-
+// Other variables
+let RunningTurns = 0;
+let startTime = Date.now();
 
 
 // Move Road Lines
@@ -154,22 +158,37 @@ function checkYAndZaxisLimit() {
  
 
 setVolume.addEventListener('change', (e) => {
-    // console.log(e.target.value);
-    const time = e.target.value / 100;
-    setVolume.volume = time.toFixed(1);
+
+    const time = (e.target.value / 100).toFixed(1);
+    audioElement.volume = time;
     console.log(time);
 
-    playBackgroundMusic()
+    playBackgroundMusic();
 })
 
 
 // Play Music function
 function playBackgroundMusic() {
-    if (audioElement.pause){
+    if (audioElement.paused){
         audioElement.play();
     }
 }
 
+
+function Timer() {
+    const time = Math.floor((Date.now() - startTime) / 1000)
+    
+    // Count Seconds  
+    let secs = String(time % 60).padStart(2, "0");
+    // Count Minutes  
+    let min = String(Math.floor(time / 60) % 60).padStart(2, "0");
+    // Count Hours  
+    let hour = String(Math.floor(time / 3600)).padStart(2, "0");
+    
+    timerBox.innerText = `${hour}:${min}:${secs}`;
+}
+
+// setInterval(Timer, 1000);
 
 
 // const setSidePanelOperation = () => {
