@@ -7,7 +7,7 @@ const line3 = document.querySelectorAll('.line3');
 const mainCharacterImg = document.querySelector('.character');
 // Selection Other Elements.
 const setVolume = document.querySelector('#gameVolume');
-const audioElement = new Audio('Assets\Background_Sound.mp3');
+const audioElement = new Audio("./Assets/Background_Sound.mp3");
 
  
 // Move Road Lines variables initial values
@@ -36,7 +36,7 @@ function moveRoadLines() {
     line2.forEach(line => {
         line.style.setProperty('--line2', `${moveline2}px`);
     })
-    console.log(moveline1)
+    // console.log(moveline1)
 
     reverseLinesOnLimit();
     // requestAnimationFrame(moveRoadLines);
@@ -152,11 +152,24 @@ function checkYAndZaxisLimit() {
 
 }
  
-setVolume.addEventListener('input', (e) => {
-    setVolume.volume = e.target.value;
-    console.log(setVolume.volume);
-    // if ()
+
+setVolume.addEventListener('change', (e) => {
+    // console.log(e.target.value);
+    const time = e.target.value / 100;
+    setVolume.volume = time.toFixed(1);
+    console.log(time);
+
+    playBackgroundMusic()
 })
+
+
+// Play Music function
+function playBackgroundMusic() {
+    if (audioElement.pause){
+        audioElement.play();
+    }
+}
+
 
 
 // const setSidePanelOperation = () => {
