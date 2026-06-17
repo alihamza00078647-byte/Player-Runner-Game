@@ -3,6 +3,13 @@ const line1 = document.querySelectorAll('.line1');
 const line2 = document.querySelectorAll('.line2'); 
 const line3 = document.querySelectorAll('.line3');
 
+// Hurdle Element
+const hurdleElement1 = document.querySelector('.hurdle')
+const hurdleElement2 = document.querySelector('.hurdle')
+const hurdleElement3 = document.querySelector('.hurdle')
+const hurdleElement4 = document.querySelector('.hurdle')
+
+
 // Select main Character
 const mainCharacterImg = document.querySelector('.character');
 const timerBox = document.querySelector(".game-timer")
@@ -11,16 +18,24 @@ const timerBox = document.querySelector(".game-timer")
 const setVolume = document.querySelector('#gameVolume');
 const audioElement = new Audio("./Assets/Background_Sound.mp3");
 
-
- 
 // Move Road Lines variables initial values
 let moveline1 = 0;
-// let moveline2 = 0;
+
 
 
 // Move Main Character.
 let x = 0, y = 0, z = 0;
+
+// img Frames for Running.
 let frames = ["first", "second", "third", "fourth"];
+
+// change the position of hurdles
+let obstaclesArrayOfPostions = [30, 250, 475, 700]
+let hurdleNo1 = 0;
+let hurdleNo2 = 0;
+let hurdleNo3 = 0;
+let hurdleNo4 = 0;
+
 
 // Other variables
 let RunningTurns = 0;
@@ -37,11 +52,6 @@ function moveRoadLines() {
         line.style.setProperty('--line1', `${moveline1}px`);
     })
 
-    // line2.forEach(line => {
-    //     line.style.setProperty('--line2', `${moveline2}px`);
-    // })
-    // console.log(moveline1)
-
     reverseLinesOnLimit();
     // requestAnimationFrame(moveRoadLines);
     moveMainCharacterFrames();
@@ -49,22 +59,6 @@ function moveRoadLines() {
 
 function reverseLinesOnLimit() {
     // Reverse lines at hitting the limit
-
-    // if (moveline2 >= 350) {
-    //     moveline2 = -700;
-        
-    //     // Hide Line 2 at reverse
-    //     line2.forEach(line => {
-    //         line.classList.add('hid-line');
-    //     });
-
-    //     // remove Hide Line 2 at timer
-    //     setTimeout(() => {
-    //         line2.forEach(line => {
-    //             line.classList.remove('hid-line');
-    //         });
-    //     }, 110);
-    // }
 
     if (moveline1 >= 600) {
         moveline1 = -700;
@@ -155,7 +149,21 @@ function JumpOnHurdles(e) {
 function checkYAndZaxisLimit() {
 
 }
- 
+
+
+function SlideObstaclesOnField() {
+    hurdleNo1 += 10;
+    hurdleNo2 += 10;
+    hurdleNo3 += 10;
+    hurdleNo4 += 10;
+
+    // hurdleElement1.style.
+
+}
+
+
+
+
 
 setVolume.addEventListener('change', (e) => {
 

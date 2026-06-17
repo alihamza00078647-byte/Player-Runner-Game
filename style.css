@@ -16,8 +16,12 @@
     --line2 : 0px;
 
     /* Obstacle Positions */
-    --hurdle1 : 0px;
+    --hurdle1Y : -80px;
+    --hurdle2Y : -120px;
+    --hurdle3Y : -140px;
+    --hurdle4Y : 0px;
 }
+
 
 .game-container{
     height: 100vh;
@@ -36,6 +40,7 @@
     display: flex;
     overflow: hidden;
     perspective: 1200px;
+    position: relative;
 }
 
 .road{
@@ -78,9 +83,42 @@
     position: absolute;
     left: 300px;
     bottom: 10px;
+    z-index: 10;
     transform-style: preserve-3d;
     transform-origin: center;
     transform: translate3d(var(--x), var(--y), var(--z));
+    transition: transform 0.2s linear;
+}
+
+
+/* Hurdle CSS */
+.hurdle{
+    height: 80px;
+    width: 170px;
+    position: absolute;
+}
+
+.hurdle1{
+    left: 30px;
+    transform: translateY(var(--hurdle1Y));
+    transition: transform 0.2s linear;
+}
+
+.hurdle2{
+    left: 250px;
+    transform: translateY(var(--hurdle2Y));
+    transition: transform 0.2s linear;
+}
+
+.hurdle3{
+    left: 475px;
+    transform: translateY(var(--hurdle3Y));
+    transition: transform 0.2s linear;
+}
+
+.hurdle4{
+    left: 700px;
+    transform: translateY(var(--hurdle4Y));
     transition: transform 0.2s linear;
 }
 
@@ -104,7 +142,6 @@
 .game-timer{
     color: white;
 }
-
 
 
 .gamesound{
@@ -138,7 +175,6 @@
     color: white;
     display: flex;
 }
-
 
 #gameVolume{
     height: 4px;
