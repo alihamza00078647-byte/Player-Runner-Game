@@ -15,7 +15,7 @@ const audioElement = new Audio("./Assets/Background_Sound.mp3");
  
 // Move Road Lines variables initial values
 let moveline1 = 0;
-let moveline2 = 0;
+// let moveline2 = 0;
 
 
 // Move Main Character.
@@ -31,15 +31,15 @@ let startTime = Date.now();
 function moveRoadLines() {
     
     moveline1 += 10;
-    moveline2 += 10;
+    // moveline2 += 10;
 
     line1.forEach(line => {
         line.style.setProperty('--line1', `${moveline1}px`);
     })
 
-    line2.forEach(line => {
-        line.style.setProperty('--line2', `${moveline2}px`);
-    })
+    // line2.forEach(line => {
+    //     line.style.setProperty('--line2', `${moveline2}px`);
+    // })
     // console.log(moveline1)
 
     reverseLinesOnLimit();
@@ -50,21 +50,21 @@ function moveRoadLines() {
 function reverseLinesOnLimit() {
     // Reverse lines at hitting the limit
 
-    if (moveline2 >= 350) {
-        moveline2 = -700;
+    // if (moveline2 >= 350) {
+    //     moveline2 = -700;
         
-        // Hide Line 2 at reverse
-        line2.forEach(line => {
-            line.classList.add('hid-line');
-        });
+    //     // Hide Line 2 at reverse
+    //     line2.forEach(line => {
+    //         line.classList.add('hid-line');
+    //     });
 
-        // remove Hide Line 2 at timer
-        setTimeout(() => {
-            line2.forEach(line => {
-                line.classList.remove('hid-line');
-            });
-        }, 110);
-    }
+    //     // remove Hide Line 2 at timer
+    //     setTimeout(() => {
+    //         line2.forEach(line => {
+    //             line.classList.remove('hid-line');
+    //         });
+    //     }, 110);
+    // }
 
     if (moveline1 >= 600) {
         moveline1 = -700;
@@ -190,12 +190,5 @@ function Timer() {
 
 // setInterval(Timer, 1000);
 
-
-// const setSidePanelOperation = () => {
-//     gameVolume
-// }
-
-// moveRoadLines();
- 
 // setInterval(moveMainCharacterFrames, 400);
 // setInterval(moveRoadLines, 100);
