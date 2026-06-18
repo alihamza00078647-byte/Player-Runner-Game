@@ -4,10 +4,10 @@ const line2 = document.querySelectorAll('.line2');
 const line3 = document.querySelectorAll('.line3');
 
 // Hurdle Element
-const hurdleElement1 = document.querySelector('.hurdle')
-const hurdleElement2 = document.querySelector('.hurdle')
-const hurdleElement3 = document.querySelector('.hurdle')
-const hurdleElement4 = document.querySelector('.hurdle')
+const hurdleElement1 = document.querySelector('.hurdle1')
+const hurdleElement2 = document.querySelector('.hurdle2')
+const hurdleElement3 = document.querySelector('.hurdle3')
+const hurdleElement4 = document.querySelector('.hurdle4')
 
 
 // Select main Character
@@ -32,9 +32,9 @@ let frames = ["first", "second", "third", "fourth"];
 // change the position of hurdles
 let obstaclesArrayOfPostions = [30, 250, 475, 700]
 let hurdleNo1 = 0;
-let hurdleNo2 = 0;
-let hurdleNo3 = 0;
-let hurdleNo4 = 0;
+let hurdleNo2 = -165;
+let hurdleNo3 = -120;
+let hurdleNo4 = -240;
 
 
 // Other variables
@@ -152,14 +152,72 @@ function checkYAndZaxisLimit() {
 
 
 function SlideObstaclesOnField() {
-    hurdleNo1 += 10;
-    hurdleNo2 += 10;
-    hurdleNo3 += 10;
-    hurdleNo4 += 10;
+    hurdleNo1 += 15;
+    hurdleNo2 += 15;
+    hurdleNo3 += 15;
+    hurdleNo4 += 15;
 
-    // hurdleElement1.style.
+    hurdleElement1.style.setProperty('--hurdle1Y', `${hurdleNo1}px`);
+    
+    hurdleElement2.style.setProperty('--hurdle2Y', `${hurdleNo2}px`);
+
+    hurdleElement3.style.setProperty('--hurdle3Y', `${hurdleNo3}px`);
+
+    hurdleElement4.style.setProperty('--hurdle4Y', `${hurdleNo4}px`);
+
+    // console.log(hurdleNo1)
+    // console.log(hurdleNo3)
+    console.log(hurdleNo4)
+
+    reverseHurdlesOnHittingLimit();
+}
+
+
+function reverseHurdlesOnHittingLimit(){
+    if (hurdleNo1 > 705) {
+        hurdleNo1 = -120;
+        hurdleElement1.classList.add('hid-line');
+
+
+        setTimeout(() => {
+            hurdleElement1.classList.remove('hid-line')
+        }, 200);
+    }
+
+    if (hurdleNo2 > 780) {
+        hurdleNo2 = -120;
+        hurdleElement2.classList.add('hid-line');
+
+
+        setTimeout(() => {
+            hurdleElement2.classList.remove('hid-line')
+        }, 200);
+    }
+
+    if (hurdleNo3 > 780) {
+        hurdleNo3 = -180;
+        hurdleElement3.classList.add('hid-line');
+
+
+        setTimeout(() => {
+            hurdleElement3.classList.remove('hid-line');
+        }, 200);
+    }
+
+    if (hurdleNo4 > 810) {
+        hurdleNo4 = -300;
+        hurdleElement4.classList.add('hid-line');
+
+
+        setTimeout(() => {
+            hurdleElement4.classList.remove('hid-line');
+        }, 200);
+    }
 
 }
+
+
+// setInterval(SlideObstaclesOnField, 200);
 
 
 
@@ -169,7 +227,7 @@ setVolume.addEventListener('change', (e) => {
 
     const time = (e.target.value / 100).toFixed(1);
     audioElement.volume = time;
-    console.log(time);
+    // console.log(time);
 
     playBackgroundMusic();
 })
