@@ -12,11 +12,13 @@ const hurdleElement4 = document.querySelector('.hurdle4')
 
 // Select main Character
 const mainCharacterImg = document.querySelector('.character');
-const timerBox = document.querySelector(".game-timer")
+const timerBox = document.querySelector(".game-timer");
 
 // Selection Other Elements.
+const VolumeIcon = document.querySelector('volume-icon');
 const setVolume = document.querySelector('#gameVolume');
 const audioElement = new Audio("./Assets/Background_Sound.mp3");
+
 
 // Move Road Lines variables initial values
 let moveline1 = 0;
@@ -91,6 +93,10 @@ function moveMainCharacterFrames() {
 // Control The Movements of Players Through x-axis.
 document.addEventListener('keydown', moveMainCharacterInGame);
 function moveMainCharacterInGame(e) {
+
+    // Play Music
+    playBackgroundMusic();
+
     // To Move Left Side. 
     if (e.key === "ArrowRight") {
         
@@ -146,11 +152,8 @@ function JumpOnHurdles(e) {
 }
 
 
-function checkYAndZaxisLimit() {
 
-}
-
-
+// Move the Hurdles
 function SlideObstaclesOnField() {
     hurdleNo1 += 15;
     hurdleNo2 += 15;
@@ -165,50 +168,51 @@ function SlideObstaclesOnField() {
 
     hurdleElement4.style.setProperty('--hurdle4Y', `${hurdleNo4}px`);
 
-    // console.log(hurdleNo1)
-    // console.log(hurdleNo3)
-    console.log(hurdleNo4)
-
     reverseHurdlesOnHittingLimit();
 }
 
 
+// Reverse the hurdles on 
 function reverseHurdlesOnHittingLimit(){
+    // reverse hurdle 1
     if (hurdleNo1 > 705) {
         hurdleNo1 = -120;
         hurdleElement1.classList.add('hid-line');
-
-
+        
+        // hide hurdle when reverse
         setTimeout(() => {
             hurdleElement1.classList.remove('hid-line')
         }, 200);
     }
-
+    
+    // reverse hurdle 2
     if (hurdleNo2 > 780) {
         hurdleNo2 = -120;
         hurdleElement2.classList.add('hid-line');
-
-
+        
+        // hide hurdle when reverse
         setTimeout(() => {
             hurdleElement2.classList.remove('hid-line')
         }, 200);
     }
-
+    
+    // reverse hurdle 3
     if (hurdleNo3 > 780) {
         hurdleNo3 = -180;
         hurdleElement3.classList.add('hid-line');
-
-
+        
+        // hide hurdle when reverse
         setTimeout(() => {
             hurdleElement3.classList.remove('hid-line');
         }, 200);
     }
-
+    
+    // reverse hurdle 4
     if (hurdleNo4 > 810) {
         hurdleNo4 = -300;
         hurdleElement4.classList.add('hid-line');
-
-
+        
+        // hide hurdle when reverse
         setTimeout(() => {
             hurdleElement4.classList.remove('hid-line');
         }, 200);
@@ -216,21 +220,22 @@ function reverseHurdlesOnHittingLimit(){
 
 }
 
-
-// setInterval(SlideObstaclesOnField, 200);
-
-
-
-
-
+// Change Volume background
 setVolume.addEventListener('change', (e) => {
-
+    
     const time = (e.target.value / 100).toFixed(1);
     audioElement.volume = time;
     // console.log(time);
+});
 
-    playBackgroundMusic();
+// Mute the Volume.
+VolumeIcon.addEventListener('click', (e) => {
+    // console.log(e);
+    console.log("Hello")
+    // VolumeIcon.classList.toggle('fa-volume-mute')
+    // VolumeIcon.muted = true;
 })
+
 
 
 // Play Music function
@@ -254,6 +259,10 @@ function Timer() {
     timerBox.innerText = `${hour}:${min}:${secs}`;
 }
 
+
+
+
+// setInterval(SlideObstaclesOnField, 200);
 // setInterval(Timer, 1000);
 
 // setInterval(moveMainCharacterFrames, 400);

@@ -135,13 +135,16 @@
     overflow: hidden;
 }
 
+
 /* Title of Game */
 .title{
     color: white;
 }
 .game-timer{
-    color: white;
+    color: red;
 }
+
+/* Volume Setting */
 
 
 .gamesound{
