@@ -83,7 +83,7 @@
     position: absolute;
     left: 300px;
     bottom: 10px;
-    z-index: 10;
+    z-index: 5;
     transform-style: preserve-3d;
     transform-origin: center;
     transform: translate3d(var(--x), var(--y), var(--z));
@@ -182,4 +182,49 @@
 #gameVolume{
     height: 4px;
     width: 100px;
+}
+
+/* Game Over banner */
+.gameoverbanner{
+    height: 280px;
+    width: 250px;
+    background-color: #FFCB77;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.restart{
+    border: 1px solid #17C3B2;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #227C9D;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 0 gray;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.restart:active{
+    box-shadow: 0 0 0 0;
+    transition: box-shadow 0.2s linear;
+}
+
+.game-container{
+    position: relative;
+}
+
+.overlay{
+    position: absolute;
+    z-index: 6;
+    inset: 0;
+    background-color: rgba(65, 65, 65, 0.317);
 }

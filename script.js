@@ -4,10 +4,10 @@ const line2 = document.querySelectorAll('.line2');
 const line3 = document.querySelectorAll('.line3');
 
 // Hurdle Element
-const hurdleElement1 = document.querySelector('.hurdle1')
-const hurdleElement2 = document.querySelector('.hurdle2')
-const hurdleElement3 = document.querySelector('.hurdle3')
-const hurdleElement4 = document.querySelector('.hurdle4')
+const hurdleElement1 = document.querySelector('.hurdle1');
+const hurdleElement2 = document.querySelector('.hurdle2');
+const hurdleElement3 = document.querySelector('.hurdle3');
+const hurdleElement4 = document.querySelector('.hurdle4');
 
 
 // Select main Character
@@ -15,7 +15,7 @@ const mainCharacterImg = document.querySelector('.character');
 const timerBox = document.querySelector(".game-timer");
 
 // Selection Other Elements.
-const VolumeIcon = document.querySelector('volume-icon');
+const VolumeIcon = document.querySelector('.volume-icon');
 const setVolume = document.querySelector('#gameVolume');
 const audioElement = new Audio("./Assets/Background_Sound.mp3");
 
@@ -56,7 +56,6 @@ function moveRoadLines() {
 
     reverseLinesOnLimit();
     // requestAnimationFrame(moveRoadLines);
-    moveMainCharacterFrames();
 }
 
 function reverseLinesOnLimit() {
@@ -220,9 +219,9 @@ function reverseHurdlesOnHittingLimit(){
 
 }
 
+
 // Change Volume background
 setVolume.addEventListener('change', (e) => {
-    
     const time = (e.target.value / 100).toFixed(1);
     audioElement.volume = time;
     // console.log(time);
@@ -230,12 +229,17 @@ setVolume.addEventListener('change', (e) => {
 
 // Mute the Volume.
 VolumeIcon.addEventListener('click', (e) => {
-    // console.log(e);
-    console.log("Hello")
-    // VolumeIcon.classList.toggle('fa-volume-mute')
-    // VolumeIcon.muted = true;
+    
+    if (VolumeIcon.classList.contains('fa-volume-high')) {
+        audioElement.muted = true;
+        VolumeIcon.classList.remove('fa-volume-high');
+        VolumeIcon.classList.add('fa-volume-mute');
+    } else {
+        audioElement.muted = false;
+        VolumeIcon.classList.remove('fa-volume-mute')
+        VolumeIcon.classList.add('fa-volume-high');
+    }
 })
-
 
 
 // Play Music function
@@ -258,6 +262,40 @@ function Timer() {
     
     timerBox.innerText = `${hour}:${min}:${secs}`;
 }
+
+
+//  Now Declare Variables for Game Loop.
+let MoveTimerOneSecVar = 2;
+let SlideObstaclesVar = 0;
+let moveRoadLinesVar = 0;
+let MoveTimerOneSec = 0;
+
+let startMotionTime = 0;
+let lastTime = 10;
+
+
+function ControlWholeGameMovements(timeStamp) {
+
+    if (startMotionTime/1000 > MoveTimerOneSec) {
+        moveMainCharacterFrames();
+        startMotionTime = 0;
+    }
+    startMotionTime = timeStamp - lastTime;
+    console.log(startMotionTime)
+
+    // SlideObstaclesOnField();
+    // moveRoadLines();
+    // Timer();
+    requestAnimationFrame(ControlWholeGameMovements);
+}
+
+
+
+
+
+// requestAnimationFrame(ControlWholeGameMovements);
+
+
 
 
 

@@ -1,61 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Runner Game</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <div class="game-container">
+      <div class="overlay"></div>
         <div class="game-area">
-            <div class="road">
-                <div class="line line1"></div>
-            </div>
-            <div class="road">
-                <div class="line line1"></div>
-            </div>
-            <div class="road">
-                <div class="line line1"></div>
-            </div>
-            <div class="road">
-                <div class="line line1"></div>
-            </div>
-            
-            <img class="character" src="./Assets/Runner/first.png" >
-            <img class="hurdle hurdle1" src="./Assets/Hurdle (2).png" alt="">
-            <img class="hurdle hurdle2" src="./Assets/Hurdle (2).png" alt="">
-            <img class="hurdle hurdle3" src="./Assets/Hurdle (2).png" alt="">
-            <img class="hurdle hurdle4" src="./Assets/Hurdle (2).png" alt="">
+          <div class="road">
+            <div class="line line1"></div>
+          </div>
+          <div class="road">
+            <div class="line line1"></div>
+          </div>
+          <div class="road">
+            <div class="line line1"></div>
+          </div>
+          <div class="road">
+            <div class="line line1"></div>
+          </div>
+
+          <img class="character" src="./Assets/Runner/first.png" />
+          <img class="hurdle hurdle1" src="./Assets/Hurdle (2).png" alt="" />
+          <img class="hurdle hurdle2" src="./Assets/Hurdle (2).png" alt="" />
+          <img class="hurdle hurdle3" src="./Assets/Hurdle (2).png" alt="" />
+          <img class="hurdle hurdle4" src="./Assets/Hurdle (2).png" alt="" />
+
+          <div class="gameoverbanner">
+            <h1>Game Over</h1>
+            <img src="./Assets/Gameover/runner_frame_0.png" alt="" />
+            <button class="restart">Restart Game</button>
+          </div>
         </div>
 
         <!-- Side Bar Area for Setting -->
-         
+
         <div class="sidebar">
+          <h1 class="title">Runner Game</h1>
+          <h3 class="game-timer">00:00:00</h3>
+          <div class="gamesound">
+            <i
+              style="color: white"
+              class="volume-icon fa-solid fa-volume-high"
+            ></i>
+            <input type="range" id="gameVolume" />
+          </div>
 
-            <h1 class="title">Runner Game</h1>
-            <h3 class="game-timer">00:00:00</h3>
-            <div class="gamesound">
-                <i style="color: white;" class="volume-icon fa-solid fa-volume-high"></i>
-                <input type="range" id="gameVolume">
-            </div>
+          <img class="game-icon" src="./Assets/icon.png" alt="" />
 
-            <img class="game-icon" src="./Assets/icon.png" alt="">
-
-            <!-- <div class="count-hurdle">
+          <!-- <div class="count-hurdle">
                 <h2 style="color: white;">Hurdles : </h2>
                 <div class="box hurdle">0</div>
             </div> -->
-            
-            <div class="count-hurdle level-count">
-                <h2 style="color: white;">Levels: </h2>
-                <div class="box level">1</div>
-                
-            </div>
+
+          <div class="count-hurdle level-count">
+            <h2 style="color: white">Levels:</h2>
+            <div class="box level">1</div>
+          </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
