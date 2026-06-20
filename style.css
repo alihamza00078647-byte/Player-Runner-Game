@@ -211,6 +211,7 @@
     font-size: 16px;
     color: white;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .restart:active{
@@ -218,13 +219,10 @@
     transition: box-shadow 0.2s linear;
 }
 
-.game-container{
-    position: relative;
-}
 
 .overlay{
     position: absolute;
     z-index: 6;
     inset: 0;
-    background-color: rgba(65, 65, 65, 0.317);
+    background-color: rgba(65, 65, 65, 0.53);
 }

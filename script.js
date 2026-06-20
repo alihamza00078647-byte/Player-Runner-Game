@@ -13,6 +13,11 @@ const hurdleElement4 = document.querySelector('.hurdle4');
 // Select main Character
 const mainCharacterImg = document.querySelector('.character');
 const timerBox = document.querySelector(".game-timer");
+const gameArea = document.querySelector('.game-area');
+const restartBtn = document.querySelector('.restart');
+const gameoverImgElement = document.querySelector('.gameover-frames');
+const gameoverbanner = document.querySelector('.gameoverbanner');
+
 
 // Selection Other Elements.
 const VolumeIcon = document.querySelector('.volume-icon');
@@ -30,6 +35,8 @@ let x = 0, y = 0, z = 0;
 
 // img Frames for Running.
 let frames = ["first", "second", "third", "fourth"];
+let gameoverFrames = ["runner_frame_0", "runner_frame_1", "runner_frame_2", "runner_frame_3", "runner_frame_4", "runner_frame_5", "runner_frame_6", "runner_frame_7"];
+
 
 // change the position of hurdles
 let obstaclesArrayOfPostions = [30, 250, 475, 700]
@@ -41,6 +48,7 @@ let hurdleNo4 = -240;
 
 // Other variables
 let RunningTurns = 0;
+let gameoverFramesCount = 0;
 let startTime = Date.now();
 
 
@@ -142,12 +150,18 @@ document.addEventListener('keyup', JumpOnHurdles);
 
 function JumpOnHurdles(e) {
     if (e.code === "Space") {
+        if (y === -400) {
+            return y = -400;
+        }
+        
         y -= 100;
-        z += 50;
+        z += 200;
+        // Reset Z-Axis back to normal
         audioElement.play();
         mainCharacterImg.style.setProperty('--y', `${y}px`);
         mainCharacterImg.style.setProperty('--z', `${z}px`);
     }
+
 }
 
 
@@ -227,6 +241,7 @@ setVolume.addEventListener('change', (e) => {
     // console.log(time);
 });
 
+
 // Mute the Volume.
 VolumeIcon.addEventListener('click', (e) => {
     
@@ -264,6 +279,32 @@ function Timer() {
 }
 
 
+
+// gameArea ka pehla sibling select karo or class add karo.
+function addLayoutOnGameOver(){
+    let element = gameArea.firstElementChild;
+    element.classList.add('overlay');
+    gameoverImgElement.src = `./Assets/Gameover/${gameoverFrames[gameoverFramesCount]}.png`;
+    // change image on each call when count is gameoverFrames.length -> It will reset it.
+    gameoverFramesCount = (gameoverFramesCount + 1) % gameoverFrames.length;
+}
+
+
+// restart game of click button
+restartBtn.addEventListener('click', (event) => {
+    location.reload();
+});
+
+
+
+function tasksAtGameOver() {
+    gameoverbanner.style.display = "";
+    addLayoutOnGameOver();
+}
+
+
+
+
 //  Now Declare Variables for Game Loop.
 let MoveTimerOneSecVar = 2;
 let SlideObstaclesVar = 0;
@@ -275,14 +316,14 @@ let lastTime = 10;
 
 
 function ControlWholeGameMovements(timeStamp) {
-
+    
     if (startMotionTime/1000 > MoveTimerOneSec) {
         moveMainCharacterFrames();
         startMotionTime = 0;
     }
     startMotionTime = timeStamp - lastTime;
     console.log(startMotionTime)
-
+    
     // SlideObstaclesOnField();
     // moveRoadLines();
     // Timer();
@@ -293,11 +334,13 @@ function ControlWholeGameMovements(timeStamp) {
 
 
 
+// addLayoutOnGameOver();
+
 // requestAnimationFrame(ControlWholeGameMovements);
 
 
 
-
+// setInterval(addLayoutOnGameOver, 100);
 
 
 // setInterval(SlideObstaclesOnField, 200);
