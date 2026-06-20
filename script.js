@@ -36,6 +36,7 @@ let x = 0, y = 0, z = 0;
 // img Frames for Running.
 let frames = ["first", "second", "third", "fourth"];
 let gameoverFrames = ["runner_frame_0", "runner_frame_1", "runner_frame_2", "runner_frame_3", "runner_frame_4", "runner_frame_5", "runner_frame_6", "runner_frame_7"];
+let jumpImgFrames = ["1", "2", "3", "4"];
 
 
 // change the position of hurdles
@@ -148,22 +149,38 @@ function moveMainCharacterInGame(e) {
 // 
 document.addEventListener('keyup', JumpOnHurdles);
 
+let jumpFramesCount = 0;
+
 function JumpOnHurdles(e) {
     if (e.code === "Space") {
-        if (y === -400) {
-            return y = -400;
-        }
         
-        y -= 100;
-        z += 200;
+        if (y < -300) {
+            return y = -300;   // Some adjustments in code
+        }
+        y -= 25;
+        
+        mainCharacterImg.src = `./Assets/Jump/${jumpImgFrames[jumpFramesCount]}.png`;
+        jumpFramesCount = (jumpFramesCount + 1) % jumpImgFrames.length;
+        
+        // z += 300;
         // Reset Z-Axis back to normal
-        audioElement.play();
+        // setInterval(() => {
+        //     z = 0;
+        // }, 500);
+
+
+
         mainCharacterImg.style.setProperty('--y', `${y}px`);
-        mainCharacterImg.style.setProperty('--z', `${z}px`);
+        // mainCharacterImg.style.setProperty('--z', `${z}px`);
+
+        // Add Frames of Jump
+
     }
 
 }
 
+
+// setInterval(JumpOnHurdles, 200);
 
 
 // Move the Hurdles
@@ -240,6 +257,9 @@ setVolume.addEventListener('change', (e) => {
     audioElement.volume = time;
     // console.log(time);
 });
+
+
+audioElement.muted = true;
 
 
 // Mute the Volume.
@@ -338,13 +358,11 @@ function ControlWholeGameMovements(timeStamp) {
 
 // requestAnimationFrame(ControlWholeGameMovements);
 
-
-
 // setInterval(addLayoutOnGameOver, 100);
 
 
 // setInterval(SlideObstaclesOnField, 200);
 // setInterval(Timer, 1000);
 
-// setInterval(moveMainCharacterFrames, 400);
+// setInterval(moveMainCharacterFrames, 300);
 // setInterval(moveRoadLines, 100);
