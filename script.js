@@ -150,37 +150,42 @@ function moveMainCharacterInGame(e) {
 document.addEventListener('keyup', JumpOnHurdles);
 
 let jumpFramesCount = 0;
+let setAndClearIntervalOnJump = 0;
 
 function JumpOnHurdles(e) {
     if (e.code === "Space") {
+
+        clearInterval(moveMainCharacterFramesIntervalId);
+        // if (y < -300) {
+        //     return y = -300;   // Some adjustments in code
+        // }
+        // y -= 25;
         
-        if (y < -300) {
-            return y = -300;   // Some adjustments in code
-        }
-        y -= 25;
-        
-        mainCharacterImg.src = `./Assets/Jump/${jumpImgFrames[jumpFramesCount]}.png`;
-        jumpFramesCount = (jumpFramesCount + 1) % jumpImgFrames.length;
-        
-        // z += 300;
-        // Reset Z-Axis back to normal
-        // setInterval(() => {
-        //     z = 0;
-        // }, 500);
-
-
-
-        mainCharacterImg.style.setProperty('--y', `${y}px`);
-        // mainCharacterImg.style.setProperty('--z', `${z}px`);
-
         // Add Frames of Jump
+        jumpIntervalId = setInterval(() => {
+            if (y < -300) {
+                return y = -300;   // Some adjustments in code
+            }
+            // Push the playe on y-axis above.
+            y -= 50;
 
+            mainCharacterImg.src = `./Assets/Jump/${jumpImgFrames[jumpFramesCount]}.png`;
+            jumpFramesCount = (jumpFramesCount + 1) % jumpImgFrames.length;
+            
+            mainCharacterImg.style.setProperty('--y', `${y}px`);
+
+            setAndClearIntervalOnJump++;
+
+            if (setAndClearIntervalOnJump > 3) {
+
+                clearInterval(jumpIntervalId);
+                setAndClearIntervalOnJump = 0;
+                moveMainCharacterFramesIntervalId = setInterval(moveMainCharacterFrames, 200);
+            }
+        }, 150);
     }
-
 }
 
-
-// setInterval(JumpOnHurdles, 200);
 
 
 // Move the Hurdles
@@ -247,7 +252,6 @@ function reverseHurdlesOnHittingLimit(){
             hurdleElement4.classList.remove('hid-line');
         }, 200);
     }
-
 }
 
 
@@ -317,6 +321,7 @@ restartBtn.addEventListener('click', (event) => {
 
 
 
+
 function tasksAtGameOver() {
     gameoverbanner.style.display = "";
     addLayoutOnGameOver();
@@ -364,5 +369,5 @@ function ControlWholeGameMovements(timeStamp) {
 // setInterval(SlideObstaclesOnField, 200);
 // setInterval(Timer, 1000);
 
-// setInterval(moveMainCharacterFrames, 300);
+// let moveMainCharacterFramesIntervalId = setInterval(moveMainCharacterFrames, 200);
 // setInterval(moveRoadLines, 100);
