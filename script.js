@@ -50,6 +50,9 @@ let hurdleNo4 = -240;
 // Other variables
 let RunningTurns = 0;
 let gameoverFramesCount = 0;
+let jumpFramesCount = 0;
+// Variable that count when the jump clears or when not.
+let setAndClearIntervalOnJump = 0;
 let startTime = Date.now();
 
 
@@ -149,23 +152,18 @@ function moveMainCharacterInGame(e) {
 // 
 document.addEventListener('keyup', JumpOnHurdles);
 
-let jumpFramesCount = 0;
-let setAndClearIntervalOnJump = 0;
 
 function JumpOnHurdles(e) {
     if (e.code === "Space") {
 
         clearInterval(moveMainCharacterFramesIntervalId);
-        // if (y < -300) {
-        //     return y = -300;   // Some adjustments in code
-        // }
-        // y -= 25;
         
         // Add Frames of Jump
         jumpIntervalId = setInterval(() => {
             if (y < -300) {
                 return y = -300;   // Some adjustments in code
             }
+
             // Push the playe on y-axis above.
             y -= 50;
 
