@@ -91,13 +91,11 @@ function reverseLinesOnLimit() {
 }
 
 
-
 function moveMainCharacterFrames() {
 
     mainCharacterImg.src = `./Assets/Runner/${frames[RunningTurns]}.png`;
 
     RunningTurns = (RunningTurns + 1) % frames.length;
-    // console.log("Frames = ", RunningTurns);
 }
 
 
@@ -149,9 +147,9 @@ function moveMainCharacterInGame(e) {
 }
 
 
+
 // 
 document.addEventListener('keyup', JumpOnHurdles);
-
 
 function JumpOnHurdles(e) {
     if (e.code === "Space") {
@@ -160,11 +158,13 @@ function JumpOnHurdles(e) {
         
         // Add Frames of Jump
         jumpIntervalId = setInterval(() => {
+            
+            // don't exceed player limit  
             if (y < -300) {
                 return y = -300;   // Some adjustments in code
             }
 
-            // Push the playe on y-axis above.
+            // Push the player on y-axis above.
             y -= 50;
 
             mainCharacterImg.src = `./Assets/Jump/${jumpImgFrames[jumpFramesCount]}.png`;
@@ -180,10 +180,9 @@ function JumpOnHurdles(e) {
                 setAndClearIntervalOnJump = 0;
                 moveMainCharacterFramesIntervalId = setInterval(moveMainCharacterFrames, 200);
             }
-        }, 150);
+        }, 120);
     }
 }
-
 
 
 // Move the Hurdles
@@ -318,8 +317,7 @@ restartBtn.addEventListener('click', (event) => {
 });
 
 
-
-
+// Tasks Perform when game over
 function tasksAtGameOver() {
     gameoverbanner.style.display = "";
     addLayoutOnGameOver();
@@ -342,7 +340,7 @@ function ControlWholeGameMovements(timeStamp) {
     
     if (startMotionTime/1000 > MoveTimerOneSec) {
         moveMainCharacterFrames();
-        startMotionTime = 0;
+        // startMotionTime = 0;
     }
     startMotionTime = timeStamp - lastTime;
     console.log(startMotionTime)
@@ -356,10 +354,10 @@ function ControlWholeGameMovements(timeStamp) {
 
 
 
+// requestAnimationFrame(ControlWholeGameMovements);
 
 // addLayoutOnGameOver();
 
-// requestAnimationFrame(ControlWholeGameMovements);
 
 // setInterval(addLayoutOnGameOver, 100);
 
